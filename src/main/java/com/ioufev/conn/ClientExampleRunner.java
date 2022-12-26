@@ -46,12 +46,12 @@ public class ClientExampleRunner {
 
         return OpcUaClient.create(
 //            clientExample.getEndpointUrl(),
-//            "opc.tcp://127.0.0.1:49320",
-            "opc.tcp://49.235.114.132:49320",
+            "opc.tcp://127.0.0.1:49320",
+//            "opc.tcp://49.235.114.132:49320",
             endpoints ->
                 endpoints.stream()
                     .filter(clientExample.endpointFilter())
-                    .map(endpoint -> EndpointUtil.updateUrl(endpoint,"49.235.114.132"))
+//                    .map(endpoint -> EndpointUtil.updateUrl(endpoint,"49.235.114.132"))
                     .findFirst(),
             configBuilder ->
                 configBuilder
