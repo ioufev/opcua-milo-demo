@@ -22,14 +22,14 @@ public interface ClientExample {
     }
 
     default SecurityPolicy getSecurityPolicy() {
-        return SecurityPolicy.Basic256Sha256;
+//        return SecurityPolicy.Basic256Sha256;
 //        return SecurityPolicy.Basic128Rsa15;
-//        return SecurityPolicy.None;
+        return SecurityPolicy.None;
     }
 
     default IdentityProvider getIdentityProvider() {
-        return new UsernameProvider("ua_user","IwjqYp(8F+gW~^1");
-//        return new AnonymousProvider();
+//        return new UsernameProvider("ua_user","IwjqYp(8F+gW~^1");
+        return new AnonymousProvider();
     }
 
     void run(OpcUaClient client, CompletableFuture<OpcUaClient> future) throws Exception;

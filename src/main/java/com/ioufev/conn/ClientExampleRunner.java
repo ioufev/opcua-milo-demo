@@ -40,9 +40,9 @@ public class ClientExampleRunner {
 
     private OpcUaClient createClient() throws Exception {
 
-        String filePath = ClientExampleRunner.class.getResource("/").getPath();
-        File file = new File(filePath);
-        KeyStoreLoader loader = new KeyStoreLoader().load(file.toPath());
+//        String filePath = ClientExampleRunner.class.getResource("/").getPath();
+//        File file = new File(filePath);
+//        KeyStoreLoader loader = new KeyStoreLoader().load(file.toPath());
 
         return OpcUaClient.create(
 //            clientExample.getEndpointUrl(),
@@ -59,9 +59,9 @@ public class ClientExampleRunner {
                     .setApplicationName(LocalizedText.english("demo"))
 //                    .setApplicationUri("urn:eclipse:milo:examples:client")
                     .setApplicationUri("")
-                    .setKeyPair(loader.getClientKeyPair())
-                    .setCertificate(loader.getClientCertificate())
-                    .setCertificateChain(loader.getClientCertificateChain())
+//                    .setKeyPair(loader.getClientKeyPair())
+//                    .setCertificate(loader.getClientCertificate())
+//                    .setCertificateChain(loader.getClientCertificateChain())
 //                    .setCertificateValidator(certificateValidator)
                     .setIdentityProvider(clientExample.getIdentityProvider())
                     .setRequestTimeout(uint(5000))
