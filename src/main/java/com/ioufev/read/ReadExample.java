@@ -43,8 +43,8 @@ public class ReadExample implements ClientExample {
         // synchronous connect
         client.connect().get();
 
-        NodeId nodeId = new NodeId(2, "通道 1.设备 1.标记 1");//uint
-
+        NodeId nodeId = new NodeId(2, "通道 1.设备 1.标记 1"); // 字符串类型的地址
+//        NodeId nodeId = new NodeId(4, 7); // 数字类型的地址
 
         DataValue dataValue = client.readValue(0.0, TimestampsToReturn.Both, nodeId).get();
 
