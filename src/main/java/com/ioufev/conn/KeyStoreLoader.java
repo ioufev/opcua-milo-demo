@@ -30,13 +30,11 @@ class KeyStoreLoader {
     private static final Pattern IP_ADDR_PATTERN = Pattern.compile(
         "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
 
-//    private static final String CLIENT_ALIAS = "client-ai";
-     // 证书的别名，就是生成证书时 -name 后的参数，不设置的话默认是“1”
-    private static final String CLIENT_ALIAS = "test";
-//    private static final char[] PASSWORD = "password".toCharArray();
+    // 证书的别名，就是生成证书时 -name 后的参数，不设置的话默认是“1”
+    private static final String CLIENT_ALIAS = "client-ai";
 
     // 证书保护密码
-    private static final char[] PASSWORD = "12345678".toCharArray();
+    private static final char[] PASSWORD = "password".toCharArray();
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -47,13 +45,12 @@ class KeyStoreLoader {
     KeyStoreLoader load(Path baseDir) throws Exception {
         KeyStore keyStore = KeyStore.getInstance("PKCS12");
 
-        // 证书文件名，现在是放在 resources 文件夹下的 test.pfx
-//        Path serverKeyStore = baseDir.resolve("example-client.pfx");
-        Path serverKeyStore = baseDir.resolve("test.pfx");
+        // 证书文件名，生成 target/classes/example-client.pfx
+        Path serverKeyStore = baseDir.resolve("example-client.pfx");
 
         logger.info("Loading KeyStore at {}", serverKeyStore);
 
-        // 使用已有证书，不走这个生成自签名证书的代码
+        // 第一次走生成证书代码，以后会使用生成的证书
         if (!Files.exists(serverKeyStore)) {
             keyStore.load(null, PASSWORD);
 
@@ -91,7 +88,6 @@ class KeyStoreLoader {
             }
         }
 
-        //
         Key clientPrivateKey = keyStore.getKey(CLIENT_ALIAS, PASSWORD);
         if (clientPrivateKey instanceof PrivateKey) {
             clientCertificate = (X509Certificate) keyStore.getCertificate(CLIENT_ALIAS);

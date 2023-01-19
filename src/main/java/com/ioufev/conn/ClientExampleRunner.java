@@ -40,6 +40,7 @@ public class ClientExampleRunner {
 
     private OpcUaClient createClient() throws Exception {
 
+        // 加载证书
 //        String filePath = ClientExampleRunner.class.getResource("/").getPath();
 //        File file = new File(filePath);
 //        KeyStoreLoader loader = new KeyStoreLoader().load(file.toPath());
@@ -52,14 +53,12 @@ public class ClientExampleRunner {
                     .findFirst(),
             configBuilder ->
                 configBuilder
-//                    .setApplicationName(LocalizedText.english("eclipse milo opc-ua client"))
-                    .setApplicationName(LocalizedText.english("demo"))
-//                    .setApplicationUri("urn:eclipse:milo:examples:client")
-                    .setApplicationUri("")
-//                    .setKeyPair(loader.getClientKeyPair())
-//                    .setCertificate(loader.getClientCertificate())
-//                    .setCertificateChain(loader.getClientCertificateChain())
-//                    .setCertificateValidator(certificateValidator)
+                    .setApplicationName(LocalizedText.english("eclipse milo opc-ua client"))
+                    .setApplicationUri("urn:eclipse:milo:examples:client")
+//                    .setKeyPair(loader.getClientKeyPair()) // 密钥对
+//                    .setCertificate(loader.getClientCertificate()) // 证书
+//                    .setCertificateChain(loader.getClientCertificateChain()) // 证书信任链
+//                    .setCertificateValidator(certificateValidator) // 验证证书
                     .setIdentityProvider(clientExample.getIdentityProvider())
                     .setRequestTimeout(uint(5000))
                     .build()
