@@ -45,13 +45,10 @@ public class ClientExampleRunner {
 //        KeyStoreLoader loader = new KeyStoreLoader().load(file.toPath());
 
         return OpcUaClient.create(
-//            clientExample.getEndpointUrl(),
-            "opc.tcp://127.0.0.1:49320",
-//            "opc.tcp://49.235.114.132:49320",
+            clientExample.getEndpointUrl(),
             endpoints ->
                 endpoints.stream()
                     .filter(clientExample.endpointFilter())
-//                    .map(endpoint -> EndpointUtil.updateUrl(endpoint,"49.235.114.132"))
                     .findFirst(),
             configBuilder ->
                 configBuilder
